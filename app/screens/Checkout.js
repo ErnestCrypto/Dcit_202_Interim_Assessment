@@ -1,40 +1,25 @@
 import React from 'react';
 import { StyleSheet, View, Text,Image, TouchableOpacity,TextInput } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { AntDesign } from '@expo/vector-icons';
 
-export default class App extends React.Component {
 
-constructor(props) {
-super(props);
-this.state = { showAlert: false };
-};
-
-showAlert = () => {
-this.setState({
-    showAlert: true
-});
-};
-
-hideAlert = () => {
-this.setState({
-    showAlert: false
-});
-};
-
-render() {
-const {showAlert} = this.state;
-
+export default function Checkout({navigation}){
 return (
 
 
-    <View style={styles.container}>
-
-
-
+    <View style={{flex: 1, alignItems:"center",backgroundColor:"white"}}>
+        
+        <View style={{flexDirection:"row",}}>
+        <TouchableOpacity >
+        <AntDesign name="arrowleft" size={24} color="black" 
+        onPress={() => navigation.navigate('Home')}
+        />
+        </TouchableOpacity>
 <Text style={{color:'black',fontSize:30,fontWeight:'600',marginBottom:20,marginTop:20}}>
                 CHECKOUT
             </Text>
-            
+            </View>
             
             <Image 
             style={{
@@ -159,47 +144,7 @@ PAYMENT INFO
             </Text>
             </TouchableOpacity>
 
-    <AwesomeAlert
-        show={showAlert}
-        showProgress={false}
-        title="TAGLINE"
-        message="Please confirm that you want to checkout"
-        closeOnTouchOutside={true}
-        closeOnHardwareBackPress={false}
-        showCancelButton={true}
-        showConfirmButton={true}
-        cancelText="Cancel"
-        cancelButtonColor="red"
-        confirmText="Confirm"
-        confirmButtonColor="#00FF00"
-        onCancelPressed={() => {
-        this.hideAlert();
-        }}
-        onConfirmPressed={() => {
-        this.hideAlert();
-        }}
-    />
+    
     </View>
 );
 };
-};
-
-const styles = StyleSheet.create({
-container: {
-flex: 1,
-alignItems: 'center',
-justifyContent: 'center',
-backgroundColor: '#fff',
-},
-button: {
-margin: 10,
-paddingHorizontal: 10,
-paddingVertical: 7,
-borderRadius: 5,
-backgroundColor: "#AEDEF4",
-},
-text: {
-color: '#fff',
-fontSize: 15
-}
-});
